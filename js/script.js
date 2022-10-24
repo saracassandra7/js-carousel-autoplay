@@ -53,18 +53,19 @@ function nextSlide(){
 
 //facciamo funzionare il carousel, oltre che con i bottoni anche in autoplay al caricamento della pagina.
 
-let clock;
+let clock = setInterval(nextSlide,2000);
+
+//Passando con il mouse sopra le immagini l’autoplay si ferma per poi ripartire quando il mouse esce dallo slider
 
 function autoPlay(){
   clock = setInterval(nextSlide,2000);
 }
 
-//Passando con il mouse sopra le immagini l’autoplay si ferma per poi ripartire quando il mouse esce dallo slider
-
-slider.addEventListener('mouseover',function(){
+function mouseStop(){
   clearInterval(clock);
-});
+}
 
+slider.addEventListener('mouseover', mouseStop);
 slider.addEventListener('mouseout', autoPlay);
 
 

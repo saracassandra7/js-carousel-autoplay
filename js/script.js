@@ -3,6 +3,7 @@ const slider = document.querySelector('.items-wrapper');
 let imagesTag = '';
 
 
+
 //aggiungo le immagini dinamicamente
 for(let i = 0; i<imagesArray.length; i++){
   imagesTag += `<img class="item" src="img/${imagesArray[i]}" alt="${imagesArray[i]}">`
@@ -38,7 +39,6 @@ prev.addEventListener('click', function(){
 
 });
 
-//facciamo funzionare il carousel, oltre che con i bottoni anche in autoplay al caricamento della pagina.
 
 function nextSlide(){
   items[counterImages].classList.remove('active');
@@ -51,4 +51,21 @@ function nextSlide(){
 
 }
 
-setInterval(nextSlide, 3000);
+//facciamo funzionare il carousel, oltre che con i bottoni anche in autoplay al caricamento della pagina.
+
+let clock;
+
+function autoPlay(){
+  clock = setInterval(nextSlide,2000);
+}
+
+//Passando con il mouse sopra le immagini l’autoplay si ferma per poi ripartire quando il mouse esce dallo slider
+
+slider.addEventListener('mouseover',function(){
+  clearInterval(clock);
+});
+
+slider.addEventListener('mouseout', autoPlay);
+
+
+
